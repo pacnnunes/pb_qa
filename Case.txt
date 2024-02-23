@@ -1,0 +1,32 @@
+Cenários de Teste: com base no case abaixo, responda as perguntas e crie alguns cenários de teste de acordo com o
+caso proposto. Para os cenários de teste, você está livre para utilizar a abordagem que achar mais interessante.
+
+Imagina que você iniciou em uma equipe com um projeto do Zero. A proposta do projeto é a criação de uma solução
+para realizar compra de imóveis através de sistemas que facilitarão a comunicação de imobiliárias, clientes e bancos. A
+arquitetura está sendo desenhada a partir de solução de microsserviços e WebSites, está sendo mapeado integrações
+com sistemas externos, espera-se volume alto de operação uma vez que o sistema irá operar em todo o território
+Brasileiro, o cliente está bem próximo do projeto para levantamento de requisitos.
+
+1.Dado esse cenário, como você iniciaria uma estratégia de teste?
+    Iniciaria a estrategia participando das reuniões de entendimento do produto, iniciaria a escrita dos cenários de teste, primeiro os cenários de 'caminho feliz' (smoke test)
+    testes de API e integração. Na proxima etapa, testes de front (usabilidade, segurança), uma vez que o produto esteja pronto para produção,
+    iniciaria um teste de performance (carga e stress).
+
+2.Quais abordagens de teste você consideraria?
+    Acredito que os testes funcionais (contrato, integração, regressão e segurança), e testes não funcionais como carga e stress,
+    deixando automatizado e executando regressivamente via pipeline
+
+3.Como você trabalharia com diferentes tipos/níveis de teste?
+    Realizaria os testes de integração entre microsserviços, sistemas externos e front. Realizaria os testes de api, para cada api 
+    que será utilizada, combinando testes de segurança para a aplicação como um todo, de acordo com a necessidade, realizaria testes
+    de perfomance baseados em crescimento de usuarios, ampliação de publico alvo, ou até mesmo campanhas publicitarias, e deixaria uma pipeline
+    executando com testes regressivos, nos quais deveriam ser executados diariamente se possível, e antes e após qualquer subida para o 
+    ambiente produtivo.
+
+4. Quais ferramentas você consideraria usar?
+    Jira para gerenciar os cards e entregas, postman para testes de api manual e semi-automatizados, playwright para automação front e backend
+    k6 para testes de performance.
+
+5.Como você se imagina atuando nessa equipe?
+    Imagino sendo o profissional que ajudará a todos a enxergar que a qualidade de um produto é papel de todos, e que o meu papel na equipe
+    é ajudar a mitigar erros, bugs e falhas, antes dos clientes, compartilhando conhecimento e fazendo parte de um ambiente agradavel de trabalho.
