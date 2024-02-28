@@ -22,9 +22,9 @@ RSpec.describe 'Testes da API PB ' do
     logger.info("Requisição realizada, status code: #{response.code}")
     expect(response.code).to eq(code_ok)
     logger.info(response.body)
-    expect(JSON::Validator.validate("./get_schema_json.json",response.body)).to be true
-    validate = apiClient.validate_schema("./get_schema_json.json",response.body)
+    apiClient.validate_schema("./get_schema_json.json",response.body)
   end
+
   it 'Validar POST / Deve retornar 201' do
     apiClient = ApiMetodos.new
     logger.info('Iniciando teste')
@@ -32,48 +32,48 @@ RSpec.describe 'Testes da API PB ' do
     logger.info("Requisição realizada, status code: #{response.code}")
     logger.info(response.body)
     expect(response.code).to eq(code_create)
-    expect(JSON::Validator.validate("./post_schema_json.json",response.body)).to be true
-    validate = apiClient.validate_schema("./post_schema_json.json",response.body)
-    end
+    response =response.body
+    apiClient.validate_schema("./post_schema_json.json",response)
+  end
   it 'Validar PUT / Deve retornar 200' do
     response = HTTParty.put("#{url}/#{user}", body: mockClient.put_payload_default.to_json, headers: {'Content-Type'=> 'application/json'})
     logger.info("Requisição realizada, status code: #{response.code}")
     logger.info(response.body)
     expect(response.code).to eq(code_ok)
-    expect(JSON::Validator.validate("./put_schema_json.json",response.body)).to be true
-    validate = apiClient.validate_schema("./put_schema_json.json",response.body)
-    end
+    response =response.body
+    apiClient.validate_schema("./put_schema_json.json",response)
+  end
   it 'Validar DELETE / Deve retornar 200' do
     response = HTTParty.delete("#{url}/#{user}")
     logger.info("Requisição realizada, status code: #{response.code}")
     logger.info(response.body)
     expect(response.code).to eq(code_ok)
-    expect(JSON::Validator.validate("./delete_schema_json.json",response.body)).to be true
-    validate = apiClient.validate_schema("./delete_schema_json.json",response.body)
+    response =response.body
+    apiClient.validate_schema("./delete_schema_json.json",response)
     end
   it 'Bad Request GET / Deve retornar 404' do
     response = HTTParty.get(bad_url)
     logger.info("Requisição realizada, status code: #{response.code}")
     logger.info(response.body)
     expect(response.code).to eq(code_badRequest)
-    expect(JSON::Validator.validate("./get_schema_404.json",response.body)).to be true
-    validate = apiClient.validate_schema("./get_schema_404.json",response.body)
+    response =response.body
+    apiClient.validate_schema("./get_schema_404.json",response)
     end
   it 'Bad Request POST / Deve retornar 404' do
     response = HTTParty.post(bad_url, body: mockClient.create_payload_default.to_json, headers: {'Content-Type'=> 'application/json' })
     logger.info("Requisição realizada, status code: #{response.code}")
     logger.info(response.body)
     expect(response.code).to eq(code_badRequest)
-    expect(JSON::Validator.validate("./post_schema_404.json",response.body)).to be true
-    validate = apiClient.validate_schema("./post_schema_404.json",response.body)
+    response =response.body
+    apiClient.validate_schema("./post_schema_404.json",response)
     end
   it 'Bad Request PUT / Deve retornar 404' do
     response = HTTParty.put(url, headers: {'Content-Type'=> 'application/json'})
     logger.info("Requisição realizada, status code: #{response.code}")
     logger.info(response.body)
     expect(response.code).to eq(code_badRequest)
-    expect(JSON::Validator.validate("./put_schema_404.json",response.body)).to be true
-    validate = apiClient.validate_schema("./put_schema_404.json",response.body)
+    response =response.body
+    apiClient.validate_schema("./put_schema_404.json",response)
     end
 
 end

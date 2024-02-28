@@ -4,10 +4,13 @@ require 'logger'
 class ApiMetodos
   def validate_schema(schema, response)
     logger = Logger.new('logfile.log')
-    if JSON::Validator.validate(schema, response)
-      logger.info('Schema válido!')
+    resultado = JSON::Validator.fully_validate(schema,response)
+    p(resultado)
+    if resultado.any?
+      logger.info("Schema Inválido")
+      raise StandardError.new
     else
-      logger.error('Schema inválido!')
+      logger.info("Schema Válido")
     end
   end
 end
