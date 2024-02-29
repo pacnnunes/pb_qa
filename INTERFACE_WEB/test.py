@@ -24,19 +24,14 @@ with sync_playwright() as p:
         time.sleep(2)
         botao.click()
 
-    links_delete = page.query_selector_all('a[href="#edit"]')
-    for link in links_delete:
-        if link.is_visible():
-            print(link)
-            link.click()
-            logging.info(f'clicando no link: {link}')
-
-    links_edit = page.query_selector_all('a[href="#delete"]')
-    for link in links_edit:
-        if link.is_visible():
-            print(link)
-            link.click()
-            logging.info(f'clicando no link: {link}')
-
-
+    rows = page.query_selector_all("tbody tr")
+    for row in rows:
+        links_delete = row.query_selector('a[href="#delete"]')
+        links_edit = row.query_selector('a[href="#edit"]')
+        links_delete.click()
+        logging.info(f'pagina atual: {page.url}')
+        assert "delete" in page.url, "A URL não contém 'delete'"
+        links_edit.click()
+        logging.info(f'pagina atual: {page.url}')
+        assert "edit" in page.url, "A URL não contém 'edit'"
     browser.close()
